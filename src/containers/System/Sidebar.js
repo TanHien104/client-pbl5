@@ -27,7 +27,7 @@ const Sidebar = () => {
     }
     
     
-    
+    console.log('check neee',currentData)
 
     return (
         <div className="w-[256px] flex-none  gap-4 ">
@@ -50,13 +50,16 @@ const Sidebar = () => {
                         </NavLink>
                     );
                 })}
-                <NavLink
-                            className={({ isActive }) => (isActive ? activeStyle : notActiveStyle)}
-                            to={menuManageUser?.path}
-                            key={menuManageUser.id}
-                        >
-                            {menuManageUser.icon} {menuManageUser.text}
-                        </NavLink>
+                {currentData && currentData?.role === 'admin' && (
+                    <NavLink
+                    className={({ isActive }) => (isActive ? activeStyle : notActiveStyle)}
+                    to={menuManageUser?.path}
+                    key={menuManageUser.id}
+                >
+                    {menuManageUser.icon} {menuManageUser.text}
+                </NavLink>
+                )}
+                
                 <span
                     onClick={() => {
                         dispatch(actions.logout());
